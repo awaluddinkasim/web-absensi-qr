@@ -18,9 +18,6 @@ class SiswaController extends Controller
 
     public function index()
     {
-        DB::table('qrcode')->where('created_at', '<=', Carbon::now()->subMinutes(5)->toDateTimeString())->update([
-            'scannable' => '0'
-        ]);
         return view('pages.user.index');
     }
 
@@ -47,6 +44,9 @@ class SiswaController extends Controller
         }
         if (Absensi::where('id_mapel', $id_mapel)->where('pertemuan', $pertemuan)->where('nis', auth()->user()->nis)->first()) {
             return redirect('/scan')->with('failed', 'Absen hanya bisa dilakukan sekali dalam satu pertemuan');
+        }
+        if (QRKode::where('id_mapel', $id_mapel)->where('pertemuan', $pertemuan)->latest()->first()->scannable == '0') {
+            return redirect('/scan')->with('failed', 'QR Code tersebut sudah expired');
         }
 
         $a = new Absensi;

@@ -40,7 +40,7 @@ class GuruController extends Controller
         $qr->scannable = '1';
         $qr->qrcode = $kode;
         $qr->save();
-        QrCode::size(200)->generate("/".md5($id).'/'.$id.'/'.$req->pertemuan, public_path('qr/'.$kode));
+        QrCode::size(200)->generate("/scan/".md5($id).'/'.$id.'/'.$req->pertemuan, public_path('qr/'.$kode));
         return redirect('/guru/absensi/'.$id);
     }
 }
