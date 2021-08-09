@@ -23,6 +23,16 @@
 @endsection
 
 @push('scripts')
+    @if (Session::has('failed'))
+        <script>
+            swal({ icon: 'error', title: '{{ Session::get('failed') }}' })
+        </script>
+    @endif
+    @if (Session::has('success'))
+        <script>
+            swal({ icon: 'success', title: '{{ Session::get('success') }}' })
+        </script>
+    @endif
     <script src="{{ asset('assets/js/html5-qrcode.min.js') }}"></script>
     <script>
         function onScanSuccess(decodedText, decodedResult) {
