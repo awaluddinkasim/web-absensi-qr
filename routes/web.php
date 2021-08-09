@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\GuruController;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
