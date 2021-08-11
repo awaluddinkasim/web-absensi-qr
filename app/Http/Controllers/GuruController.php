@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\QRKode;
 use Illuminate\Http\Request;
@@ -23,6 +24,20 @@ class GuruController extends Controller
     public function profile()
     {
         return view('pages.guru.profile');
+    }
+
+    public function profileSimpan(Request $req)
+    {
+        $me = Guru::find(auth()->user()->username);
+        $me->nip = $req->nip;
+        $me->nama = $req->nama;
+        $me->tempat_lahir = $req->tempat_lahir;
+        $me->tgl_lahir = $req->tgl_lahir;
+        if ($req->password) {
+            $me->password = bcrypt($req->password);
+        }
+        $me->save();
+        return redirect('/guru/profil')->with('success', 'Profil berhasil disimpan');
     }
 
     public function absensi($id = null)

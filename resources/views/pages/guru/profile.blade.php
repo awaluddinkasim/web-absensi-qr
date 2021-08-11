@@ -25,8 +25,27 @@
                             <input type="text" class="form-control" name="username" id="username" value="{{ auth()->user()->username }}" disabled>
                         </div>
                         <div class="form-group">
+                            <label for="nip">NIP</label>
+                            <input type="text" class="form-control" name="nip" id="nip" value="{{ auth()->user()->nip }}" autocomplete="off">
+                            <small>* Kosongkan jika tidak ada</small>
+                        </div>
+                        <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" name="nama" id="nama" value="{{ auth()->user()->nama }}" autocomplete="off" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tempat_lahir">Tempat Lahir</label>
+                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ auth()->user()->tempat_lahir }}" required autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tgl_lahir">Tanggal Lahir</label>
+                                    <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required value="{{ auth()->user()->tgl_lahir }}">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
