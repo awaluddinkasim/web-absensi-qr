@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // route Siswa
 Route::get('/', [SiswaController::class, 'index']);
+Route::get('/profil', [SiswaController::class, 'profile']);
 Route::get('/jadwal/{id?}', [SiswaController::class, 'jadwal']);
 Route::get('/scan', [SiswaController::class, 'scan']);
 
@@ -27,8 +28,10 @@ Route::get('/scan/{hash}/{id_mapel}/{pertemuan}', [SiswaController::class, 'scan
 
 // route Guru
 Route::get('/guru', [GuruController::class, 'index']);
+Route::get('/guru/profil', [GuruController::class, 'profile']);
 Route::get('/guru/absensi/{id?}', [GuruController::class, 'absensi']);
 Route::post('/guru/absensi/{id}', [GuruController::class, 'absensiQR']);
+Route::get('/guru/laporan', [GuruController::class, 'laporan']);
 
 
 // route Admin
@@ -40,6 +43,7 @@ Route::get('/admin/master/{jenis}', [AdminController::class, 'master']);
 Route::post('/admin/master/{jenis}', [AdminController::class, 'masterInput']);
 Route::get('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusan']);
 Route::post('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusanInput']);
+Route::get('/admin/laporan', [AdminController::class, 'laporan']);
 
 
 // route Auth

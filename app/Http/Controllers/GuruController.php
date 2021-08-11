@@ -20,6 +20,11 @@ class GuruController extends Controller
         return view('pages.guru.index');
     }
 
+    public function profile()
+    {
+        return view('pages.guru.profile');
+    }
+
     public function absensi($id = null)
     {
         if ($id) {
@@ -42,5 +47,10 @@ class GuruController extends Controller
         $qr->save();
         QrCode::size(200)->generate("/scan/".md5($id).'/'.$id.'/'.$req->pertemuan, public_path('qr/'.$kode));
         return redirect('/guru/absensi/'.$id);
+    }
+
+    public function laporan()
+    {
+        return view('pages.admin.laporan');
     }
 }

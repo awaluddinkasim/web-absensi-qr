@@ -28,8 +28,8 @@
             </div>
         </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">
+    <li class="nav-item {{ Request::segment(2) == "laporan" ? 'active' : '' }}">
+        <a class="nav-link" href="/admin/laporan">
             <i class="fas fa-fw fa-print"></i>
             <span>Laporan</span>
         </a>

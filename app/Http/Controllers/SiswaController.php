@@ -21,6 +21,11 @@ class SiswaController extends Controller
         return view('pages.user.index');
     }
 
+    public function profile()
+    {
+        return view('pages.user.profile');
+    }
+
     public function jadwal($id = null)
     {
         if ($id) {

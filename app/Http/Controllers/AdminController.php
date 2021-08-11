@@ -200,4 +200,9 @@ class AdminController extends Controller
         return redirect('/admin/master/guru');
 
     }
+
+    public function laporan()
+    {
+        return view('pages.admin.laporan');
+    }
 }

@@ -70,8 +70,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    @if ($qr)
                     <button type="button" class="btn btn-success" onclick="document.location.href = '/scan'">Scan QR
                         Code</button>
+                    @endif
                 </div>
             </div>
         </div>
