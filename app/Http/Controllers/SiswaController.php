@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use App\Models\Mapel;
 use App\Models\QRKode;
+use App\Models\Siswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,19 @@ class SiswaController extends Controller
     public function profile()
     {
         return view('pages.user.profile');
+    }
+
+    public function profileSimpan(Request $req)
+    {
+        $me = Siswa::find(auth()->user()->nis);
+        $me->nama = $req->nama;
+        $me->tempat_lahir = $req->tempat_lahir;
+        $me->tgl_lahir = $req->tgl_lahir;
+        if ($req->password) {
+            $me->password = bcrypt($req->password);
+        }
+        $me->save();
+        return redirect('/profil')->with('success', 'Profil berhasil diperbaharui');
     }
 
     public function jadwal($id = null)

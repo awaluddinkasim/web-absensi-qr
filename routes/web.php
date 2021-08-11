@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // route Siswa
 Route::get('/', [SiswaController::class, 'index']);
 Route::get('/profil', [SiswaController::class, 'profile']);
+Route::post('/profil', [SiswaController::class, 'profileSimpan']);
 Route::get('/jadwal/{id?}', [SiswaController::class, 'jadwal']);
 Route::get('/scan', [SiswaController::class, 'scan']);
 
@@ -29,6 +30,7 @@ Route::get('/scan/{hash}/{id_mapel}/{pertemuan}', [SiswaController::class, 'scan
 // route Guru
 Route::get('/guru', [GuruController::class, 'index']);
 Route::get('/guru/profil', [GuruController::class, 'profile']);
+Route::post('/guru/profil', [GuruController::class, 'profileSimpan']);
 Route::get('/guru/absensi/{id?}', [GuruController::class, 'absensi']);
 Route::post('/guru/absensi/{id}', [GuruController::class, 'absensiQR']);
 Route::get('/guru/laporan', [GuruController::class, 'laporan']);

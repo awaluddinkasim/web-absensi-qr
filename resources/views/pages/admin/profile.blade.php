@@ -67,18 +67,19 @@
             let konf = $('#konfirmasi-password');
 
             if (pass.val().length > 0) {
+                $('#btn-simpan').attr('disabled', true);
                 $('#konfirmasi').show();
                 konf.attr('required', true);
                 if (pass.val() != konf.val()) {
                     konf.removeClass('is-valid');
                     konf.addClass('is-invalid');
-                    $('#btn-simpan').attr('disabled', true);
                 } else {
                     konf.removeClass('is-invalid');
                     konf.addClass('is-valid');
                     $('#btn-simpan').removeAttr('disabled');
                 }
             } else {
+                $('#btn-simpan').removeAttr('disabled');
                 konf.removeAttr('required');
                 $('#konfirmasi').hide();
             }
