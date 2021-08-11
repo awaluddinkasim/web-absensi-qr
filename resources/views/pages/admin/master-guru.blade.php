@@ -49,7 +49,7 @@
                         <td>{{ $item->tempat_lahir }}, {{ Carbon\Carbon::parse($item->tgl_lahir)->isoFormat('D MMMM YYYY') }}</td>
                         <td>{{ $item->jabatan }}</td>
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm">Edit</button>
+                            <button class="btn btn-success btn-sm" onclick="document.location.href = '{{ Request::url() }}/{{ $item->username }}'">Edit</button>
                             <button class="btn btn-outline-danger btn-sm">Hapus</button>
                         </td>
                     </tr>
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="jabatan">Jabatan</label>
+                            <label for="jabatan">Status</label>
                             <select class="form-control" name="jabatan" id="jabatan" required>
                                 <option value="" selected hidden>Pilih</option>
                                 <option value="Guru Tidak Tetap">Guru Tidak Tetap</option>

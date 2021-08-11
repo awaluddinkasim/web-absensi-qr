@@ -33,10 +33,12 @@ Route::post('/guru/absensi/{id}', [GuruController::class, 'absensiQR']);
 
 // route Admin
 Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/master/guru/{username}', [AdminController::class, 'editGuru']);
+Route::post('/admin/master/guru/{username}', [AdminController::class, 'editGuruSimpan']);
 Route::get('/admin/master/{jenis}', [AdminController::class, 'master']);
 Route::post('/admin/master/{jenis}', [AdminController::class, 'masterInput']);
-Route::get('/admin/master/{jenis}/{jurusan}/{kelas}', [AdminController::class, 'masterPerJurusan']);
-Route::post('/admin/master/{jenis}/{jurusan}/{kelas}', [AdminController::class, 'masterPerJurusanInput']);
+Route::get('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusan']);
+Route::post('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusanInput']);
 
 
 // route Auth

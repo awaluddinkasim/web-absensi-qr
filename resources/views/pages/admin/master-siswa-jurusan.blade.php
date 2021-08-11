@@ -44,10 +44,10 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->nis }}</td>
                         <td>{{ $item->nama }}</td>
-                        <td>L</td>
+                        <td>{{ $item->jk }}</td>
                         <td>{{ $item->tempat_lahir }}, {{ Carbon\Carbon::parse($item->tgl_lahir)->isoFormat('D MMMM YYYY') }}</td>
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm">Edit</button>
+                            <button class="btn btn-success btn-sm" onclick="document.location.href = '{{ Request::url() }}/{{ $item->nis }}'">Edit</button>
                             <button class="btn btn-outline-danger btn-sm">Hapus</button>
                         </td>
                     </tr>

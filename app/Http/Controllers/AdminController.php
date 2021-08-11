@@ -68,8 +68,26 @@ class AdminController extends Controller
         }
     }
 
-    public function masterPerJurusan($jenis, $jurusan, $kelas)
+    public function masterPerJurusan($jenis, $jurusan, $kelas, $id = null)
     {
+        if ($id) {
+            switch ($jenis) {
+                case 'siswa':
+                    $data = Siswa::find($id);
+                    return view('pages.admin.edit-siswa', ['data' => $data], compact('jurusan', 'kelas'));
+                    break;
+
+                case 'mapel':
+                    $data = Mapel::find($id);
+                    $guru = Guru::all();
+                    return view('pages.admin.edit-mapel', ['daftarGuru' => $guru, 'data' => $data], compact('jurusan', 'kelas'));
+                    break;
+
+                default:
+                    return redirect('/admin');
+                    break;
+            }
+        }
         switch ($jenis) {
             case 'siswa':
                 $data = Siswa::where('jurusan', $jurusan)->where('kelas', $kelas)->orderBy('nis')->orderBy('nama')->get();
@@ -88,8 +106,38 @@ class AdminController extends Controller
         }
     }
 
-    public function masterPerJurusanInput(Request $req, $jenis, $jurusan, $kelas)
+    public function masterPerJurusanInput(Request $req, $jenis, $jurusan, $kelas, $id = null)
     {
+        if ($id) {
+            switch ($jenis) {
+                case 'siswa':
+                    $s = Siswa::find($id);
+                    $s->nama = $req->nama;
+                    $s->jk = $req->jk;
+                    $s->tempat_lahir = $req->tempat_lahir;
+                    $s->tgl_lahir = $req->tgl_lahir;
+                    if ($req->password) {
+                        $s->password = bcrypt($req->password);
+                    }
+                    $s->save();
+                    return redirect('/admin/master/siswa/'.$jurusan.'/'.$kelas);
+                    break;
+
+                case 'mapel':
+                    $m = Mapel::find($id);
+                    $m->mapel = $req->nama;
+                    $m->hari = $req->hari;
+                    $m->jam = $req->jam;
+                    $m->pengajar = $req->guru;
+                    $m->save();
+                    return redirect('/admin/master/mapel/'.$jurusan.'/'.$kelas);
+                    break;
+
+                default:
+                    return redirect('/admin');
+                    break;
+            }
+        }
         switch ($jenis) {
             case 'siswa':
                 $siswa = new Siswa;
@@ -122,5 +170,29 @@ class AdminController extends Controller
                 return redirect('/admin');
                 break;
         }
+    }
+
+    public function editGuru($username)
+    {
+        $data = Guru::find($username);
+        return view('pages.admin.edit-guru', ['data' => $data]);
+    }
+
+    public function editGuruSimpan(Request $req, $username)
+    {
+        $g = Guru::find($username);
+        $g->nip = $req->nip;
+        $g->nip = $req->nip;
+        $g->nama = $req->nama;
+        $g->jk = $req->jk;
+        $g->tempat_lahir = $req->tempat_lahir;
+        $g->tgl_lahir = $req->tgl_lahir;
+        $g->jabatan = $req->jabatan;
+        if ($req->password) {
+            $g->password = bcrypt($req->password);
+        }
+        $g->save();
+        return redirect('/admin/master/guru');
+
     }
 }

@@ -47,7 +47,7 @@
                         <td>{{ Carbon\Carbon::parse($item->jam)->format('h:i') }}</td>
                         <td>{{ $item->guru->nama }}</td>
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm">Edit</button>
+                            <button class="btn btn-success btn-sm" onclick="document.location.href = '{{ Request::url() }}/{{ $item->id }}'">Edit</button>
                             <button class="btn btn-outline-danger btn-sm">Hapus</button>
                         </td>
                     </tr>
