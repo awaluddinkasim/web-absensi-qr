@@ -37,6 +37,7 @@ Route::get('/guru/laporan', [GuruController::class, 'laporan']);
 // route Admin
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/profil', [AdminController::class, 'profile']);
+Route::post('/admin/profil', [AdminController::class, 'profileSimpan']);
 Route::get('/admin/master/guru/{username}', [AdminController::class, 'editGuru']);
 Route::post('/admin/master/guru/{username}', [AdminController::class, 'editGuruSimpan']);
 Route::get('/admin/master/{jenis}', [AdminController::class, 'master']);

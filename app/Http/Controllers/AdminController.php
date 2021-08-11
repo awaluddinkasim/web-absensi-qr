@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -25,6 +27,17 @@ class AdminController extends Controller
     public function profile()
     {
         return view('pages.admin.profile');
+    }
+
+    public function profileSimpan(Request $req)
+    {
+        $me = Admin::find(auth()->user()->username);
+        $me->nama = $req->nama;
+        if ($req->password) {
+            $me->password = bcrypt($req->password);
+        }
+        $me->save();
+        return redirect('/admin/profil')->with('success', 'Profil berhasil diperbaharui');
     }
 
     public function master($jenis)

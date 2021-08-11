@@ -11,13 +11,77 @@
         </ol>
     </div>
 
-    <!-- DataTable with Hover -->
-    <div class="card mb-4">
-        <div class="card-body">
-
+    <div class="row">
+        <div class="col-md-7 col-sm-12 text-center">
+            <img src="{{ asset('img/profile.svg') }}" alt="" class="w-50">
+        </div>
+        <div class="col-md-5 col-sm-12">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="username" id="username" value="{{ auth()->user()->username }}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Nama</label>
+                            <input type="text" class="form-control" name="nama" id="nama" value="{{ auth()->user()->nama }}" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password">
+                            <small>* Kosongkan jika tidak ingin mengganti password</small>
+                        </div>
+                        <div class="form-group" style="display: none" id="konfirmasi">
+                            <label for="konfirmasi-password">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="konfirmasi-password">
+                            <div class="invalid-feedback">
+                                Konfirmasi password tidak cocok.
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <button class="btn btn-primary float-right" id="btn-simpan">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
 </div>
 <!---Container Fluid-->
 @endsection
+
+
+@push('scripts')
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    @if (Session::has('success'))
+    <script>
+        swal({ icon: 'success', title: '{{ Session::get('success') }}' })
+    </script>
+    @endif
+    <script>
+        $('#password, #konfirmasi-password').on('keyup change', function() {
+            let pass = $('#password');
+            let konf = $('#konfirmasi-password');
+
+            if (pass.val().length > 0) {
+                $('#konfirmasi').show();
+                konf.attr('required', true);
+                if (pass.val() != konf.val()) {
+                    konf.removeClass('is-valid');
+                    konf.addClass('is-invalid');
+                    $('#btn-simpan').attr('disabled', true);
+                } else {
+                    konf.removeClass('is-invalid');
+                    konf.addClass('is-valid');
+                    $('#btn-simpan').removeAttr('disabled');
+                }
+            } else {
+                konf.removeAttr('required');
+                $('#konfirmasi').hide();
+            }
+        })
+    </script>
+@endpush
