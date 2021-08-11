@@ -11,7 +11,15 @@
                 <span class="ml-2 d-none d-lg-inline text-white small">{{ auth()->user()->nama }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                @auth("admin")
+                <a class="dropdown-item" href="/admin/profil">
+                @endauth
+                @auth("guru")
+                <a class="dropdown-item" href="/guru/profil">
+                @endauth
+                @auth("web")
+                <a class="dropdown-item" href="/profil">
+                @endauth
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>

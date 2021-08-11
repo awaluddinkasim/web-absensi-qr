@@ -22,6 +22,11 @@ class AdminController extends Controller
         return view('pages.admin.index', compact('tot_siswa', 'tot_guru', 'tot_mapel'));
     }
 
+    public function profile()
+    {
+        return view('pages.admin.profile');
+    }
+
     public function master($jenis)
     {
         switch ($jenis) {

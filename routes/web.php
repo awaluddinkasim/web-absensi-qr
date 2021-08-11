@@ -33,6 +33,7 @@ Route::post('/guru/absensi/{id}', [GuruController::class, 'absensiQR']);
 
 // route Admin
 Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/profil', [AdminController::class, 'profile']);
 Route::get('/admin/master/guru/{username}', [AdminController::class, 'editGuru']);
 Route::post('/admin/master/guru/{username}', [AdminController::class, 'editGuruSimpan']);
 Route::get('/admin/master/{jenis}', [AdminController::class, 'master']);
