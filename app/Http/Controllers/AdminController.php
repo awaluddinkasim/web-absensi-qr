@@ -7,6 +7,7 @@ use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Siswa;
 use App\Models\User;
+use PDF;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -214,8 +215,24 @@ class AdminController extends Controller
 
     }
 
+    public function guruHapus(Request $req, $username)
+    {
+        Guru::find($username)->delete();
+        return redirect('/admin/master/guru');
+    }
+
     public function laporan()
     {
         return view('pages.admin.laporan');
+    }
+
+    public function laporanMataPelajaran($jurusan, $kelas, $id = null)
+    {
+        if ($id) {
+            $pdf = PDF::loadView('export.laporan-semester');
+            return $pdf->download('Laporan Semester.pdf');
+        }
+        $data = Mapel::where('jurusan', $jurusan)->where('kelas', $kelas)->orderBy('hari', 'DESC')->orderBy('jam')->get();
+        return view('pages.admin.laporan-mapel', ['data' => $data]);
     }
 }

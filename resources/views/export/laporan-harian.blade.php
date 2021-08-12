@@ -23,8 +23,8 @@
     <table border="1" cellspacing="0" cellpadding="0" style="table-layout: fixed; width: 100%">
         <tr>
             <th rowspan="2">No</th>
-            <th rowspan="2">NIS</th>
-            <th rowspan="2">Nama</th>
+            <th rowspan="2">Nomor Induk Siswa</th>
+            <th rowspan="2">Nama Lengkap</th>
             <th rowspan="2">Jenis Kelamin</th>
             <th colspan="2">Keterangan</th>
         </tr>

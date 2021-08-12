@@ -43,11 +43,13 @@ Route::get('/admin/profil', [AdminController::class, 'profile']);
 Route::post('/admin/profil', [AdminController::class, 'profileSimpan']);
 Route::get('/admin/master/guru/{username}', [AdminController::class, 'editGuru']);
 Route::post('/admin/master/guru/{username}', [AdminController::class, 'editGuruSimpan']);
+Route::delete('/admin/master/guru/{username}/delete', [AdminController::class, 'guruHapus']);
 Route::get('/admin/master/{jenis}', [AdminController::class, 'master']);
 Route::post('/admin/master/{jenis}', [AdminController::class, 'masterInput']);
 Route::get('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusan']);
 Route::post('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusanInput']);
 Route::get('/admin/laporan', [AdminController::class, 'laporan']);
+Route::get('/admin/laporan/{jurusan}/{kelas}/{id?}', [AdminController::class, 'laporanMataPelajaran']);
 
 
 // route Auth
