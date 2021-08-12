@@ -12,4 +12,9 @@ class Mapel extends Model
     {
         return $this->belongsTo(Guru::class, 'pengajar', 'username');
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_mapel', 'id');
+    }
 }

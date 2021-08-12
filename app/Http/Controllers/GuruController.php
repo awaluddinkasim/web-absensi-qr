@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\QRKode;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Str;
@@ -64,8 +65,11 @@ class GuruController extends Controller
         return redirect('/guru/absensi/'.$id);
     }
 
-    public function laporan()
+    public function laporan($id = null)
     {
-        return view('pages.admin.laporan');
+        if ($id) {
+            return view('pages.guru.laporan-mapel', compact('id'));
+        }
+        return view('pages.guru.laporan');
     }
 }

@@ -33,7 +33,7 @@ Route::get('/guru/profil', [GuruController::class, 'profile']);
 Route::post('/guru/profil', [GuruController::class, 'profileSimpan']);
 Route::get('/guru/absensi/{id?}', [GuruController::class, 'absensi']);
 Route::post('/guru/absensi/{id}', [GuruController::class, 'absensiQR']);
-Route::get('/guru/laporan', [GuruController::class, 'laporan']);
+Route::get('/guru/laporan/{id?}', [GuruController::class, 'laporan']);
 
 
 // route Admin
