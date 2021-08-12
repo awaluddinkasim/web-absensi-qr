@@ -50,7 +50,11 @@
                         <td>{{ $item->jabatan }}</td>
                         <td class="text-center">
                             <button class="btn btn-success btn-sm" onclick="document.location.href = '{{ Request::url() }}/{{ $item->username }}'">Edit</button>
-                            <button class="btn btn-outline-danger btn-sm">Hapus</button>
+                            <form action="{{ Request::url() }}/{{ $item->username }}/delete" method="POST"  style="display: inline">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-outline-danger btn-sm" type="submit">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

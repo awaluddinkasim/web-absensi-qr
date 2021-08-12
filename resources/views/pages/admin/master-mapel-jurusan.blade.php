@@ -48,7 +48,11 @@
                         <td>{{ $item->guru->nama }}</td>
                         <td class="text-center">
                             <button class="btn btn-success btn-sm" onclick="document.location.href = '{{ Request::url() }}/{{ $item->id }}'">Edit</button>
-                            <button class="btn btn-outline-danger btn-sm">Hapus</button>
+                            <form action="{{ Request::url() }}/{{ $item->id }}" method="POST" style="display: inline">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-outline-danger btn-sm" type="submit">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

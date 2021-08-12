@@ -48,7 +48,11 @@
                         <td>{{ $item->tempat_lahir }}, {{ Carbon\Carbon::parse($item->tgl_lahir)->isoFormat('D MMMM YYYY') }}</td>
                         <td class="text-center">
                             <button class="btn btn-success btn-sm" onclick="document.location.href = '{{ Request::url() }}/{{ $item->nis }}'">Edit</button>
-                            <button class="btn btn-outline-danger btn-sm">Hapus</button>
+                            <form action="{{ Request::url() }}/{{ $item->nis }}" method="POST" style="display: inline">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-outline-danger btn-sm" type="submit">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

@@ -48,6 +48,7 @@ Route::get('/admin/master/{jenis}', [AdminController::class, 'master']);
 Route::post('/admin/master/{jenis}', [AdminController::class, 'masterInput']);
 Route::get('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusan']);
 Route::post('/admin/master/{jenis}/{jurusan}/{kelas}/{id?}', [AdminController::class, 'masterPerJurusanInput']);
+Route::delete('/admin/master/{jenis}/{jurusan}/{kelas}/{id}', [AdminController::class, 'masterPerJurusanHapus']);
 Route::get('/admin/laporan', [AdminController::class, 'laporan']);
 Route::get('/admin/laporan/{jurusan}/{kelas}/{id?}', [AdminController::class, 'laporanMataPelajaran']);
 

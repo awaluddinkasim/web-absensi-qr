@@ -191,6 +191,25 @@ class AdminController extends Controller
         }
     }
 
+    public function masterPerJurusanHapus(Request $req, $jenis, $jurusan, $kelas, $id)
+    {
+        switch ($jenis) {
+            case 'siswa':
+                Siswa::find($id)->delete();
+                return redirect('/admin/master/siswa/'.$jurusan.'/'.$kelas);
+                break;
+
+            case 'mapel':
+                Mapel::find($id)->delete();
+                return redirect('/admin/master/mapel/'.$jurusan.'/'.$kelas);
+                break;
+
+            default:
+                return redirect('/admin');
+                break;
+        }
+    }
+
     public function editGuru($username)
     {
         $data = Guru::find($username);
