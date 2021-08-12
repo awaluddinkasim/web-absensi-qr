@@ -9,6 +9,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Str;
+use PDF;
 
 class GuruController extends Controller
 {
@@ -71,5 +72,13 @@ class GuruController extends Controller
             return view('pages.guru.laporan-mapel', compact('id'));
         }
         return view('pages.guru.laporan');
+    }
+
+    public function exportLaporanHarian($id, $filterPertemuan)
+    {
+        $mapel = Mapel::find($id);
+        $siswa = Siswa::where('kelas', $mapel->kelas)->where('jurusan', $mapel->jurusan)->get();
+        $pdf = PDF::loadView('export.laporan-harian', compact('siswa', 'filterPertemuan', 'mapel'));
+        return $pdf->download('Absensi_'.str_replace(' ', '_', $mapel->mapel).'_Pertemuan_'.$filterPertemuan.'.pdf');
     }
 }

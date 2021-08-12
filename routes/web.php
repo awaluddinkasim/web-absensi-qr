@@ -34,6 +34,7 @@ Route::post('/guru/profil', [GuruController::class, 'profileSimpan']);
 Route::get('/guru/absensi/{id?}', [GuruController::class, 'absensi']);
 Route::post('/guru/absensi/{id}', [GuruController::class, 'absensiQR']);
 Route::get('/guru/laporan/{id?}', [GuruController::class, 'laporan']);
+Route::get('/guru/laporan/{id}/{pertemuan}/export', [GuruController::class, 'exportLaporanHarian']);
 
 
 // route Admin

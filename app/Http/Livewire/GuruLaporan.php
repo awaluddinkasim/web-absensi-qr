@@ -8,6 +8,8 @@ use App\Models\QRKode;
 use App\Models\Siswa;
 use Livewire\Component;
 
+use PDF;
+
 class GuruLaporan extends Component
 {
     public $id_mapel;

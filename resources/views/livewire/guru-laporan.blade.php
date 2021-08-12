@@ -26,9 +26,11 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
+                    @if ($filterPertemuan)
                     <div class="clearfix">
-                        <button class="btn btn-primary float-right">Cetak Laporan</button>
+                        <button class="btn btn-primary float-right" onclick="document.location.href = '/guru/laporan/{{ $mapel->id }}/{{ $filterPertemuan }}/export'">Cetak Laporan</button>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="table-responsive p-3">
@@ -37,7 +39,8 @@
                         <tr class="d-flex row">
                             <th scope="col" class="col-1">#</th>
                             <th class="col-2">NIS</th>
-                            <th class="col-5">Nama</th>
+                            <th class="col-4">Nama</th>
+                            <th class="col-1">L/P</th>
                             <th class="col-2 text-center">Hadir</th>
                             <th class="col-2 text-center">Tidak Hadir</th>
                         </tr>
@@ -48,7 +51,8 @@
                             <tr class="d-flex row">
                                 <td class="col-1">{{ $loop->iteration }}</td>
                                 <td class="col-2">{{ $item->nis }}</td>
-                                <td class="col-5">{{ $item->nama }}</td>
+                                <td class="col-4">{{ $item->nama }}</td>
+                                <td class="col-1">{{ $item->jk }}</td>
                                 <td class="col-2 text-center">
                                     @if ($item->absensi($filterPertemuan)->first())
                                         <i class="fas fa-check-circle text-success"></i>
