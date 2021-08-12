@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Harian</title>
     <style>
         th, td, h1, h2, h3, h4, h5, h6 {
@@ -39,12 +38,12 @@
             <td>{{ $item->nama }}</td>
             <td style="width: 12%; text-align: center">{{ $item->jk }}</td>
             <td style="width: 10%">
-                @if ($item->absensi($filterPertemuan)->first())
+                @if ($item->absensi($filterPertemuan, $mapel->id)->first())
                 <i class="fas fa-check"></i>
                 @endif
             </td>
             <td style="width: 10%">
-                @if (!$item->absensi($filterPertemuan)->first())
+                @if (!$item->absensi($filterPertemuan, $mapel->id)->first())
                     <i class="fas fa-check"></i>
                 @endif
             </td>

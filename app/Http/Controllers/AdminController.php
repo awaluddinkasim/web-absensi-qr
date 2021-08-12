@@ -248,8 +248,10 @@ class AdminController extends Controller
     public function laporanMataPelajaran($jurusan, $kelas, $id = null)
     {
         if ($id) {
-            $pdf = PDF::loadView('export.laporan-semester');
-            return $pdf->download('Laporan Semester.pdf');
+            $mapel = Mapel::find($id);
+            $siswa = Siswa::where('kelas', $mapel->kelas)->where('jurusan', $mapel->jurusan)->get();
+            $pdf = PDF::loadView('export.laporan-semester', compact('siswa', 'mapel'));
+            return $pdf->setPaper('a4', 'landscape')->download('Absensi Semester '.$mapel->mapel.' Kelas '.$mapel->kelas.' '.$mapel->jurusan.'.pdf');
         }
         $data = Mapel::where('jurusan', $jurusan)->where('kelas', $kelas)->orderBy('hari', 'DESC')->orderBy('jam')->get();
         return view('pages.admin.laporan-mapel', ['data' => $data]);

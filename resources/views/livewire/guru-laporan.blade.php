@@ -54,12 +54,12 @@
                                 <td class="col-4">{{ $item->nama }}</td>
                                 <td class="col-1">{{ $item->jk }}</td>
                                 <td class="col-2 text-center">
-                                    @if ($item->absensi($filterPertemuan)->first())
+                                    @if ($item->absensi($filterPertemuan, $mapel->id)->first())
                                         <i class="fas fa-check-circle text-success"></i>
                                     @endif
                                 </td>
                                 <td class="col-2 text-center">
-                                    @if (!$item->absensi($filterPertemuan)->first())
+                                    @if (!$item->absensi($filterPertemuan, $mapel->id)->first())
                                         <i class="fas fa-check-circle text-success"></i>
                                     @endif
                                 </td>

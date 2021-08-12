@@ -10,8 +10,8 @@ class Siswa extends Authenticatable
     protected $primaryKey = 'nis';
     public $incrementing = false;
 
-    public function absensi($pertemuan)
+    public function absensi($pertemuan, $id_mapel)
     {
-        return $this->hasOne(Absensi::class, 'nis', 'nis')->where('pertemuan', $pertemuan);
+        return $this->hasOne(Absensi::class, 'nis', 'nis')->where('pertemuan', $pertemuan)->where('id_mapel', $id_mapel);
     }
 }
