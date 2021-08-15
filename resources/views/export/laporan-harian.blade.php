@@ -31,8 +31,8 @@
             <th>Hadir</th>
             <th>Tidak Hadir</th>
         </tr>
+        @forelse ($siswa as $item)
         <tr>
-            @forelse ($siswa as $item)
             <td style="width: 5%">{{ $loop->iteration }}</td>
             <td style="width: 18%">{{ $item->nis }}</td>
             <td>{{ $item->nama }}</td>
@@ -47,12 +47,12 @@
                     <i class="fas fa-check"></i>
                 @endif
             </td>
-            @empty
-            <tr>
-                <td colspan="6" style="text-align: center">Tidak ada data</td>
-            </tr>
-            @endforelse
         </tr>
+        @empty
+        <tr>
+            <td colspan="6" style="text-align: center">Tidak ada data</td>
+        </tr>
+        @endforelse
     </table>
 </body>
 </html>

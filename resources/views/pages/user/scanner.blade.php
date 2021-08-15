@@ -13,7 +13,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div style="width: 500px" id="reader"></div>
+            <div style="width: 100%; min-height: 300px; height: calc(100vh - 300px)" id="reader"></div>
         </div>
     </div>
 
